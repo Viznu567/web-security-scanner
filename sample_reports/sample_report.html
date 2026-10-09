@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Security Assessment Report</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 30px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
+th { background: #f0f0f0; }
+</style></head><body>
+<h1>Web Security Assessment Report</h1>
+<p><b>Target:</b> http://localhost:8080<br>
+<b>Date:</b> 2026-10-09 12:53:49<br>
+<b>Total findings:</b> 15 (High: 1, Medium: 8, Low: 6)</p>
+<table>
+<tr><th>#</th><th>Severity</th><th>Finding</th><th>Impact</th><th>Remediation</th></tr>
+<tr><td>1</td><td style='color:#d32f2f;font-weight:bold'>High</td><td>Site not served over HTTPS</td><td>Traffic can be intercepted or modified (MITM).</td><td>Enable TLS and redirect all HTTP traffic to HTTPS.</td></tr>
+<tr><td>2</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Missing header: Content-Security-Policy</td><td>Helps prevent XSS and data injection.</td><td>Add a restrictive CSP header.</td></tr>
+<tr><td>3</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Missing header: X-Frame-Options</td><td>Page can be framed, enabling clickjacking.</td><td>Set X-Frame-Options: DENY or SAMEORIGIN.</td></tr>
+<tr><td>4</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Missing header: Strict-Transport-Security</td><td>Browsers may allow HTTP downgrade.</td><td>Add HSTS with a long max-age.</td></tr>
+<tr><td>5</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Cookie &#x27;session&#x27; missing Secure flag</td><td>Cookie can be sent over unencrypted HTTP.</td><td>Add the Secure attribute to the cookie.</td></tr>
+<tr><td>6</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Cookie &#x27;session&#x27; missing HttpOnly flag</td><td>JavaScript can read the cookie, so XSS could steal it.</td><td>Add the HttpOnly attribute to the cookie.</td></tr>
+<tr><td>7</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Cookie &#x27;prefs&#x27; missing Secure flag</td><td>Cookie can be sent over unencrypted HTTP.</td><td>Add the Secure attribute to the cookie.</td></tr>
+<tr><td>8</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Risky HTTP method enabled: PUT</td><td>Attackers may upload or overwrite files on the server.</td><td>Disable the PUT method unless it is required.</td></tr>
+<tr><td>9</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Risky HTTP method enabled: DELETE</td><td>Attackers may delete resources on the server.</td><td>Disable the DELETE method unless it is required.</td></tr>
+<tr><td>10</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>Missing header: X-Content-Type-Options</td><td>Browser may MIME-sniff responses.</td><td>Set X-Content-Type-Options: nosniff.</td></tr>
+<tr><td>11</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>Missing header: Referrer-Policy</td><td>URLs may leak to third parties.</td><td>Set Referrer-Policy: strict-origin-when-cross-origin.</td></tr>
+<tr><td>12</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>Cookie &#x27;session&#x27; missing SameSite attribute</td><td>Cookie may be sent on cross-site requests (CSRF risk).</td><td>Set SameSite=Lax or SameSite=Strict.</td></tr>
+<tr><td>13</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>Server header discloses version: BaseHTTP/0.6 Python/3.13.0</td><td>Attackers can look up known vulnerabilities for this exact version.</td><td>Remove or genericize the Server header in the web server config.</td></tr>
+<tr><td>14</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>X-Powered-By header discloses technology: PHP/5.6.40</td><td>Reveals the backend technology, which helps attackers target it.</td><td>Remove the X-Powered-By header from responses.</td></tr>
+<tr><td>15</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>Risky HTTP method enabled: TRACE</td><td>Can be abused in cross-site tracing attacks to expose headers.</td><td>Disable the TRACE method unless it is required.</td></tr>
+</table>
+<p><i>Automated passive checks only. Findings should be verified manually.</i></p>
+</body></html><!DOCTYPE html>
+<html><head><meta charset="utf-8"><title>Security Assessment Report</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 30px; }
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid #ccc; padding: 8px; text-align: left; vertical-align: top; }
+th { background: #f0f0f0; }
+</style></head><body>
+<h1>Web Security Assessment Report</h1>
+<p><b>Target:</b> http://localhost:8080<br>
+<b>Date:</b> 2026-10-09 13:08:46<br>
+<b>Total findings:</b> 15 (High: 1, Medium: 8, Low: 6)</p>
+<table>
+<tr><th>#</th><th>Severity</th><th>Finding</th><th>Impact</th><th>Remediation</th></tr>
+<tr><td>1</td><td style='color:#d32f2f;font-weight:bold'>High</td><td>Site not served over HTTPS</td><td>Traffic can be intercepted or modified (MITM).</td><td>Enable TLS and redirect all HTTP traffic to HTTPS.</td></tr>
+<tr><td>2</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Missing header: Content-Security-Policy</td><td>Helps prevent XSS and data injection.</td><td>Add a restrictive CSP header.</td></tr>
+<tr><td>3</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Missing header: X-Frame-Options</td><td>Page can be framed, enabling clickjacking.</td><td>Set X-Frame-Options: DENY or SAMEORIGIN.</td></tr>
+<tr><td>4</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Missing header: Strict-Transport-Security</td><td>Browsers may allow HTTP downgrade.</td><td>Add HSTS with a long max-age.</td></tr>
+<tr><td>5</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Cookie &#x27;session&#x27; missing Secure flag</td><td>Cookie can be sent over unencrypted HTTP.</td><td>Add the Secure attribute to the cookie.</td></tr>
+<tr><td>6</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Cookie &#x27;session&#x27; missing HttpOnly flag</td><td>JavaScript can read the cookie, so XSS could steal it.</td><td>Add the HttpOnly attribute to the cookie.</td></tr>
+<tr><td>7</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Cookie &#x27;prefs&#x27; missing Secure flag</td><td>Cookie can be sent over unencrypted HTTP.</td><td>Add the Secure attribute to the cookie.</td></tr>
+<tr><td>8</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Risky HTTP method enabled: PUT</td><td>Attackers may upload or overwrite files on the server.</td><td>Disable the PUT method unless it is required.</td></tr>
+<tr><td>9</td><td style='color:#f57c00;font-weight:bold'>Medium</td><td>Risky HTTP method enabled: DELETE</td><td>Attackers may delete resources on the server.</td><td>Disable the DELETE method unless it is required.</td></tr>
+<tr><td>10</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>Missing header: X-Content-Type-Options</td><td>Browser may MIME-sniff responses.</td><td>Set X-Content-Type-Options: nosniff.</td></tr>
+<tr><td>11</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>Missing header: Referrer-Policy</td><td>URLs may leak to third parties.</td><td>Set Referrer-Policy: strict-origin-when-cross-origin.</td></tr>
+<tr><td>12</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>Cookie &#x27;session&#x27; missing SameSite attribute</td><td>Cookie may be sent on cross-site requests (CSRF risk).</td><td>Set SameSite=Lax or SameSite=Strict.</td></tr>
+<tr><td>13</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>Server header discloses version: BaseHTTP/0.6 Python/3.13.0</td><td>Attackers can look up known vulnerabilities for this exact version.</td><td>Remove or genericize the Server header in the web server config.</td></tr>
+<tr><td>14</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>X-Powered-By header discloses technology: PHP/5.6.40</td><td>Reveals the backend technology, which helps attackers target it.</td><td>Remove the X-Powered-By header from responses.</td></tr>
+<tr><td>15</td><td style='color:#388e3c;font-weight:bold'>Low</td><td>Risky HTTP method enabled: TRACE</td><td>Can be abused in cross-site tracing attacks to expose headers.</td><td>Disable the TRACE method unless it is required.</td></tr>
+</table>
+<p><i>Automated passive checks only. Findings should be verified manually.</i></p>
+</body></html>
