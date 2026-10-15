@@ -42,29 +42,35 @@ def check_headers(response):
                 "fix": fix
             })
     return findings
+def parse_cookie(cookie):
+    # split "name=value; Path=/; HttpOnly" into the name and a set of flag names
+    parts = [p.strip() for p in cookie.split(";")]
+    name = parts[0].split("=", 1)[0].strip()
+    flags = {p.split("=", 1)[0].strip().lower() for p in parts[1:]}
+    return name, flags
+
 def check_cookies(response):
     findings = []
     # include cookies set during redirects too
     for r in response.history + [response]:
         for cookie in r.raw.headers.getlist("Set-Cookie"):
-            name = cookie.split("=")[0].strip()
-            attrs = cookie.lower()
+            name, flags = parse_cookie(cookie)
 
-            if "secure" not in attrs:
+            if "secure" not in flags:
                 findings.append({
                     "title": f"Cookie '{name}' missing Secure flag",
                     "severity": "Medium",
                     "impact": "Cookie can be sent over unencrypted HTTP.",
                     "fix": "Add the Secure attribute to the cookie."
                 })
-            if "httponly" not in attrs:
+            if "httponly" not in flags:
                 findings.append({
                     "title": f"Cookie '{name}' missing HttpOnly flag",
                     "severity": "Medium",
                     "impact": "JavaScript can read the cookie, so XSS could steal it.",
                     "fix": "Add the HttpOnly attribute to the cookie."
                 })
-            if "samesite" not in attrs:
+            if "samesite" not in flags:
                 findings.append({
                     "title": f"Cookie '{name}' missing SameSite attribute",
                     "severity": "Low",
@@ -73,7 +79,6 @@ def check_cookies(response):
                 })
     return findings
 LEAKY_HEADERS = ["X-Powered-By", "X-AspNet-Version", "X-AspNetMvc-Version", "X-Generator"]
-
 def check_info_disclosure(response):
     findings = []
 

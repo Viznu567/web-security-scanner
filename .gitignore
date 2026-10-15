@@ -3,3 +3,4 @@ __pycache__/
 *.pyc
 report_*.md
 report_*.html
+.vscode/
