@@ -11,7 +11,7 @@ A Python-based scanner that performs passive security checks on a web applicatio
 - Severity-sorted Markdown and HTML reports
 
 ## Setup
-    git clone <your-repo-url>
+    git clone  https://github.com/Viznu567/web-security-scanner.git
     cd web-security-scanner
     python -m venv venv
     venv\Scripts\activate
