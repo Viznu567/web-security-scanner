@@ -13,7 +13,7 @@ A Python-based scanner that performs passive security checks on a web applicatio
 - Severity-sorted Markdown and HTML reports
 
 ## Requirements
-- Python 3.9 or newer
+- Python 3.13 
 - `requests` library (installed through `requirements.txt`)
 
 ## Setup
